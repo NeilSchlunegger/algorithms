@@ -27,7 +27,7 @@ public class Main {
 	public final static int MIN = 0;
 	public final static int MAX = 5;
 
-	public static int coin(int[][] pMatrix)
+	public static Queue<Point> coin(int[][] pMatrix)
 	{
 		int[][] dynamic = new int[ROW][COL];
 		dynamic[0][0] = pMatrix[0][0];
@@ -94,10 +94,10 @@ public class Main {
 		{
 			myQ.add(myStack.pop());
 		}
-		System.out.println(myQ);
+		//System.out.println(myQ);
 		
-		return dynamic[ROW-1][COL-1];
-	}
+		return myQ;
+		}
 	public static void main(String[] args)
 	{
 		int[][] matrix = new int[ROW][COL];
