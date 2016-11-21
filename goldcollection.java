@@ -13,12 +13,14 @@ public class Main {
 		dynamic[0][0] = pMatrix[0][0];
 		for(int j = 1; j < COL; j++)
 		{
-			dynamic[0][j] = pMatrix[0][j] + dynamic[0][j-1];
+			dynamic[0][j] = pMatrix[0][j] + dynamic[0][j-1];//where youre at now + total from what it took to get there
 		}
-		for(int j = 1; j < ROW; j++)
-		{
-			dynamic[j][0] = pMatrix[j][0] + dynamic[j-1][0];
-		}
+//		for(int j = 1; j < ROW; j++)
+//		{
+//			dynamic[j][0] = pMatrix[j][0] + dynamic[j-1][0];
+//		}
+		//dynamic[1][1] = pMatrix[0][1] + pMatrix[0][1] + pMatrix[1][1];
+
 //		System.out.println("dynamic");
 //		for(int i = 0; i < ROW; i++)
 //		{
@@ -30,10 +32,10 @@ public class Main {
 //		}
 		for(int i = 1; i < ROW; i++)
 		{
-			dynamic[i][1] = dynamic[i-1][1] + pMatrix[i][1];
+			dynamic[i][0] = dynamic[i-1][0] + pMatrix[i][0];
 			for(int j = 1; j < COL; j++)
 			{
-				dynamic[i][j] = Math.max(dynamic[i-1][j], (dynamic[i][j-1] + pMatrix[i][j]));
+				dynamic[i][j] = Math.max(dynamic[i-1][j] + pMatrix[i][j], (dynamic[i][j-1] + pMatrix[i][j]));
 			}
 		}
 		System.out.println("dynamic");
@@ -48,7 +50,6 @@ public class Main {
 		return dynamic[ROW-1][COL-1];
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int[][] matrix = new int[ROW][COL];
 		for(int i = 0; i < ROW; i++)
 		{
@@ -58,6 +59,15 @@ public class Main {
 				//matrix[i][j] = 1;
 			}
 		}
+//		matrix[0][0] =  2;
+//		matrix[0][1] =  4;
+//		matrix[0][2] =  0;
+//		matrix[1][0] =  0;
+//		matrix[1][1] =  3;
+//		matrix[1][2] =  0;
+//		matrix[2][0] =  1;
+//		matrix[2][1] =  0;
+//		matrix[2][2] =  5;
 		System.out.println("orig matrix");
 		for(int i = 0; i < ROW; i++)
 		{
@@ -69,5 +79,16 @@ public class Main {
 		}
 		System.out.println(coin(matrix));
 		//System.out.println();
+
+		//System.out.println(matrix[0][2]);
+//		System.out.println("dynamic");
+//		for(int i = 0; i < ROW; i++)
+//		{
+//			for(int j = 0; j < COL; j++)
+//			{
+//				System.out.print(matrix[i][j] + "  ");
+//			}
+//			System.out.println();
+//		}
 }
 }
