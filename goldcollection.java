@@ -1,5 +1,7 @@
 package sd;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -52,36 +54,44 @@ public class Main {
 		
 		int i = ROW-1;
 		int j = COL-1;
-		Stack<Point> myStack = new Stack<Point>();
-		myStack.push(new Point(i,j));
+		Queue<Point> myQ = new LinkedList<Point>();
+		myQ.add(new Point(i,j));
 		//System.out.println(myStack);
 		while(i != 0 || j != 0)
 		{
 			if(i == 0)
 			{
 				j = j - 1;
-				myStack.push(new Point(i,j));
+				myQ.add(new Point(i,j));
 				continue;
 			}
 			if(j == 0)
 			{
 				i = i - 1;
-				myStack.push(new Point(i,j));
+				myQ.add(new Point(i,j));
 				continue;
 			}
 			if(dynamic[i-1][j] > dynamic[i][j-1])
 			{
 				i = i-1;
-				myStack.push(new Point(i,j));
+				myQ.add(new Point(i,j));
 			}
 			else
 			{	
 				j = j-1;
-				myStack.push(new Point(i,j));
+				myQ.add(new Point(i,j));
 			}
 		}
-		//myStack.push(new Point(0,0));
-		System.out.println(myStack);
+		Stack<Point> myStack = new Stack<Point>();
+		while(!myQ.isEmpty())
+		{
+			myStack.push(myQ.remove());
+		}
+		while(!myStack.isEmpty())
+		{
+			myQ.add(myStack.pop());
+		}
+		System.out.println(myQ);
 		
 		return dynamic[ROW-1][COL-1];
 	}
