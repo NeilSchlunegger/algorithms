@@ -82,6 +82,7 @@ public class Main {
 				myQ.add(new Point(i,j));
 			}
 		}
+		//path is in reverse order, get it back to normal starting at [0][0]
 		Stack<Point> myStack = new Stack<Point>();
 		while(!myQ.isEmpty())
 		{
