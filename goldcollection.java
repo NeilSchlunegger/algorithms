@@ -4,7 +4,23 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
-
+/*
+  public class Point {
+	Point(int x, int y)
+	{
+		this.x = x;
+		this.y = y;
+	}
+	int x;
+	int y;
+	
+	@Override
+	public String toString()
+	{
+		return "(" + x + "," + y + ")";
+	}
+}
+ */
 public class Main {
 	public final static int ROW = 3;
 	public final static int COL = 3;
@@ -19,21 +35,7 @@ public class Main {
 		{
 			dynamic[0][j] = pMatrix[0][j] + dynamic[0][j-1];//where youre at now + total from what it took to get there
 		}
-//		for(int j = 1; j < ROW; j++)
-//		{
-//			dynamic[j][0] = pMatrix[j][0] + dynamic[j-1][0];
-//		}
-		//dynamic[1][1] = pMatrix[0][1] + pMatrix[0][1] + pMatrix[1][1];
 
-//		System.out.println("dynamic");
-//		for(int i = 0; i < ROW; i++)
-//		{
-//			for(int j = 0; j < COL; j++)
-//			{
-//				System.out.print(dynamic[i][j] + "  ");
-//			}
-//			System.out.println();
-//		}
 		for(int i = 1; i < ROW; i++)
 		{
 			dynamic[i][0] = dynamic[i-1][0] + pMatrix[i][0];
@@ -56,7 +58,7 @@ public class Main {
 		int j = COL-1;
 		Queue<Point> myQ = new LinkedList<Point>();
 		myQ.add(new Point(i,j));
-		//System.out.println(myStack);
+
 		while(i != 0 || j != 0)
 		{
 			if(i == 0)
@@ -96,25 +98,16 @@ public class Main {
 		
 		return dynamic[ROW-1][COL-1];
 	}
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		int[][] matrix = new int[ROW][COL];
 		for(int i = 0; i < ROW; i++)
 		{
 			for(int j = 0; j < COL; j++)
 			{
 				matrix[i][j] = ThreadLocalRandom.current().nextInt(MIN, MAX + 1);
-				//matrix[i][j] = 1;
 			}
 		}
-//		matrix[0][0] =  2;
-//		matrix[0][1] =  4;
-//		matrix[0][2] =  0;
-//		matrix[1][0] =  0;
-//		matrix[1][1] =  3;
-//		matrix[1][2] =  0;
-//		matrix[2][0] =  1;
-//		matrix[2][1] =  0;
-//		matrix[2][2] =  5;
 		System.out.println("orig matrix");
 		for(int i = 0; i < ROW; i++)
 		{
@@ -125,17 +118,5 @@ public class Main {
 			System.out.println();
 		}
 		System.out.println(coin(matrix));
-		//System.out.println();
-
-		//System.out.println(matrix[0][2]);
-//		System.out.println("dynamic");
-//		for(int i = 0; i < ROW; i++)
-//		{
-//			for(int j = 0; j < COL; j++)
-//			{
-//				System.out.print(matrix[i][j] + "  ");
-//			}
-//			System.out.println();
-//		}
-}
+	}
 }
