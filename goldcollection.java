@@ -1,7 +1,9 @@
+package sd;
+
+import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-
 	public final static int ROW = 3;
 	public final static int COL = 3;
 	public final static int MIN = 0;
@@ -47,6 +49,40 @@ public class Main {
 			}
 			System.out.println();
 		}
+		
+		int i = ROW-1;
+		int j = COL-1;
+		Stack<Point> myStack = new Stack<Point>();
+		myStack.push(new Point(i,j));
+		//System.out.println(myStack);
+		while(i != 0 || j != 0)
+		{
+			if(i == 0)
+			{
+				j = j - 1;
+				myStack.push(new Point(i,j));
+				continue;
+			}
+			if(j == 0)
+			{
+				i = i - 1;
+				myStack.push(new Point(i,j));
+				continue;
+			}
+			if(dynamic[i-1][j] > dynamic[i][j-1])
+			{
+				i = i-1;
+				myStack.push(new Point(i,j));
+			}
+			else
+			{	
+				j = j-1;
+				myStack.push(new Point(i,j));
+			}
+		}
+		//myStack.push(new Point(0,0));
+		System.out.println(myStack);
+		
 		return dynamic[ROW-1][COL-1];
 	}
 	public static void main(String[] args) {
