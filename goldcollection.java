@@ -69,16 +69,5 @@ public class Main {
 		}
 		System.out.println(coin(matrix));
 		//System.out.println();
-
-		//System.out.println(matrix[0][2]);
-//		System.out.println("dynamic");
-//		for(int i = 0; i < ROW; i++)
-//		{
-//			for(int j = 0; j < COL; j++)
-//			{
-//				System.out.print(matrix[i][j] + "  ");
-//			}
-//			System.out.println();
-//		}
 }
 }
